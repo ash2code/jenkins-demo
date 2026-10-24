@@ -1,3 +1,4 @@
+#SAMPLE JENKINSFILE
 pipeline {
     agent {
         label 'ec2-worker'
