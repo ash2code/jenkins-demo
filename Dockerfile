@@ -1,14 +1,7 @@
-FROM maven AS build
+FROM eclipse-temurin:17-jre
+
 WORKDIR /app
 
-COPY pom.xml .
-COPY src ./src
+COPY target/jenkins-demo-1.0.jar app.jar
 
-RUN mvn clean package -DskipTests
-
-FROM openjdk:17-slim
-WORKDIR /app
-
-COPY --from=build /app/target/*.jar app.jar
-
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
